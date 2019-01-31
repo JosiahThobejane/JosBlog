@@ -1,10 +1,6 @@
-<%-- 
-    Document   : index
-    Created on : 08 Dec 2018
-    Author     : Josiah
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="josblog.controllers.Engine, java.sql.*"%>
+<%! public String articleID, articleTitle, articleAuthor, articleDate, articleBody;%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,7 +10,7 @@
     </head>
     
     <body>
-        <nav class="navbar is-dark">
+        <nav class="navbar is-dark is-fluid ">
             <div class="container">
 		<div class="navbar-brand">
                     <a class="navbar-item" href="/">
@@ -32,8 +28,9 @@
             </div>
         </nav>
         
-        <!-- intro section -->
-        <section class="hero is-light is-medium is-fullheight-with-navbar has-text-centered">
+        
+        <!-- intro section 
+        <section class="hero is-light is-small is-bold has-text-centered">
             <div class="hero-body">
 		<div class="container">
                     <div class="columns is-centered">
@@ -44,6 +41,57 @@
                     </div>
 		</div>
             </div>						
-	</section>
+	</section>-->
+        
+        <!-- NEWS SECTION -->
+        <section class="is-light container is-fluid" style="margin-top: 20px;">
+            <div style="margin: 5px;">
+                <div class="columns is-center">
+                    <% Engine engine = new Engine();
+                        try {
+                            PreparedStatement ps = engine.conn.prepareStatement("SELECT * FROM articles");
+                            ResultSet results = ps.executeQuery();
+
+                            while(results.next())
+                            {
+                                articleID = results.getString("ArticleID");
+                                articleTitle = results.getString("ArticleTitle");
+                                articleDate = results.getString("ArticleDate");
+                                articleAuthor = results.getString("ArticleAuthor");
+                                //assuming no one would write an article with less than 80 characters
+                                articleBody = results.getString("ArticleBody").substring(0, 80) + "..."; 
+                    %>
+                                <!-- THE CODE -->
+                                <div class="column is-4">
+                                    <div class="card">
+                                        <div class="card-image">
+                                            <figure class="image ">
+                                                <img src="assets/img/2.jpg"/>
+                                            </figure>
+                                        </div>
+                                        <div class="card-content">
+                                            <div class="media">                                    
+                                                <div class="media-content">
+                                                    <p><a class="title is-4" href="article?id=<%= articleID %>  "><%= articleTitle %></a></p>
+                                                    <p class="subtitle is-6"><%= articleAuthor + " // " + articleDate %></p>
+                                                </div>
+                                            </div>
+
+                                            <div class="content"><%= articleBody %></div>                                   
+                                            <p class="control"><a class="button " href="article?id=<%= articleID %>"><span>Read more   </span></a></p>
+                                        </div>
+                                    </div>
+                                </div> 
+                        
+                    <%
+                            }
+                        } catch(SQLException ex)
+                        {
+
+                        }
+                    %>
+                </div>
+            </div>
+        </section>        
     </body>
 </html>
