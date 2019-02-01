@@ -43,6 +43,13 @@
 		<finalName>josiahblog</finalName>
 		<plugins>
 			<plugin>
+            <plugin>            
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <webXml>web\WEB-INF\web.xml</webXml>        
+                </configuration>
+            </plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<version>2.3</version>
