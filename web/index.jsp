@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="josblog.controllers.Engine, java.sql.*"%>
+<%@page import="josblog.controllers.*, java.sql.*"%>
 <%! public String articleID, articleTitle, articleAuthor, articleDate, articleBody;%>
 <!DOCTYPE html>
 <html>
