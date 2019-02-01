@@ -40,6 +40,11 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<resources>
+        	<resource>
+          		<directory>web</directory>
+        	</resource>
+      	</resources>
         <sourceDirectory>src/java</sourceDirectory>
 		<finalName>josiahblog</finalName>
 		<plugins>
