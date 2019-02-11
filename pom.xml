@@ -45,7 +45,7 @@
           		<directory>web</directory>
         	</resource>
       	</resources>
-        <sourceDirectory>src/java</sourceDirectory>
+        <sourceDirectory>src\java</sourceDirectory>
 		<finalName>josiahblog</finalName>
 		<plugins>
 			<plugin>
